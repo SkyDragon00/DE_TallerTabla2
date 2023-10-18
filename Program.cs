@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using DE_TallerTabla2.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<DE_TallerTabla2Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DE_TallerTabla2Context") ?? throw new InvalidOperationException("Connection string 'DE_TallerTabla2Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
